@@ -52,5 +52,5 @@ cursor.executemany("INSERT INTO teachers (name, subject_id) VALUES (?, ?)", teac
 
 conn.commit()
 conn.close()
-print("✅ Database updated with 8 subjects and shared teachers.")
+print("Database updated with 8 subjects and shared teachers.")
 
