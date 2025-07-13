@@ -11,7 +11,7 @@ def index():
     if request.method == "POST":
         room_count_raw = request.form.get("rooms")
         if not room_count_raw or not room_count_raw.isdigit():
-            return "❌ Invalid room count. Please go back and try again."
+            return "Invalid room count. Please go back and try again."
 
         room_count = int(room_count_raw)
         rooms = [f"R{i+1}" for i in range(room_count)]
@@ -51,7 +51,7 @@ def index():
                     timetable[year][d][s] is None and
                     s not in teacher_schedule[teacher][d] and
                     s not in room_schedule[r][d] and
-                    len(teacher_schedule[teacher][d]) < 2  # 👈 Only 2 lectures per teacher per day
+                    len(teacher_schedule[teacher][d]) < 2  #  Only 2 lectures per teacher per day
                 ):
                     timetable[year][d][s] = {
                         'code': code,
@@ -69,6 +69,6 @@ def index():
     return render_template('form.html')
 
 if __name__ == '__main__':
-    print("✅ Flask server is starting on http://127.0.0.1:5000/")
+    print(" Flask server is starting on http://127.0.0.1:5000/")
     app.run(debug=True)
 
