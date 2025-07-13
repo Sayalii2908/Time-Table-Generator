@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generated Timetables</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <h1>📅 Weekly Timetables</h1>
+
+    {% for year in ["FY", "SY"] %}
+    <h2>{{ year }} Timetable</h2>
+    <table>
+        <tr>
+            <th>Time</th>
+            {% for day in days %}
+            <th>{{ day }}</th>
+            {% endfor %}
+        </tr>
+        {% for slot in slots %}
+        <tr>
+            <td>{{ slot }}</td>
+            {% for day in days %}
+            <td>
+                {% if timetable[year][day][slot] %}
+                    <strong>{{ timetable[year][day][slot]["subject"] }}</strong><br>
+                    {{ timetable[year][day][slot]["teacher"] }}<br>
+                    Room: {{ timetable[year][day][slot]["room"] }}<br>
+                    <small>{{ timetable[year][day][slot]["code"] }}</small>
+                {% else %}
+                    Free
+                {% endif %}
+            </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+    {% endfor %}
+
+    <br>
+    <!-- 🔁 Regenerate Form -->
+    <form method="post">
+        <input type="hidden" name="rooms" value="{{ rooms }}">
+        <button type="submit">🔁 Regenerate Timetable</button>
+    </form>
+
+    <br>
+    <a href="/">⬅️ Start Over</a>
+</body>
+</html>
+
